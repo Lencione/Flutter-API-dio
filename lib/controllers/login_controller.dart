@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:splashscreen/services/prefs_service.dart';
 
 class LoginController {
   ValueNotifier<bool> inLoading = ValueNotifier<bool>(false);
@@ -11,9 +12,13 @@ class LoginController {
 
   Future<bool> auth() async {
     inLoading.value = true;
-    await Future.delayed(Duration(seconds: 1));
+    await Future.delayed(const Duration(seconds: 1));
     inLoading.value = false;
     print('Login: $_login, password: $_password');
-    return _login == '123' && _password == '123';
+    if (_login == '123' && _password == '123') {
+      PrefsService.save(_login!);
+      return true;
+    }
+    return false;
   }
 }

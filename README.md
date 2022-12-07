@@ -11,3 +11,5 @@ Estudo de APIs com Flutter utilizando dio
 - Passagem de parâmetros
 - Requisição API com dio
 - Login (Mockado)
+- SharedPreferences
+- Services

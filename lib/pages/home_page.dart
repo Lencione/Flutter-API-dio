@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:splashscreen/controllers/home_controller.dart';
 import 'package:splashscreen/models/post_model.dart';
 import 'package:splashscreen/repositories/home_repository_imp.dart';
+import 'package:splashscreen/services/prefs_service.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -24,6 +25,16 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: const Text('Consumo de API'),
         backgroundColor: Colors.green[200],
+        actions: [
+          IconButton(
+            onPressed: () {
+              PrefsService.logout();
+              Navigator.of(context)
+                  .pushNamedAndRemoveUntil('/login', (_) => true);
+            },
+            icon: const Icon(Icons.logout),
+          )
+        ],
       ),
       body: ValueListenableBuilder<List<PostModel>>(
         valueListenable: _controller.posts,
